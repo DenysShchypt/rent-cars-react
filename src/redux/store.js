@@ -10,16 +10,19 @@ import {
     PURGE,
     REGISTER,
 } from 'redux-persist';
-import { mySlice } from "./mySlice/mySlice";
-
+import { carsSlice } from "./cars/carsSlice";
+import { modalSlice } from "./modal/modalSlice";
+import { favoriteSlice } from "./favorite/favoriteSlice";
 
 const carsConfig = {
-    key: 'myKey',
+    key: 'auto',
     storage,
-    whitelist: 'myReducer',
+    whitelist: 'favorite',
 };
 const rootReducer = combineReducers({
-    myReact: mySlice.reducer,
+    cars: carsSlice.reducer,
+    modal: modalSlice.reducer,
+    favorite: favoriteSlice.reducer
 });
 const persistedReducer = persistReducer(carsConfig, rootReducer);
 export const store = configureStore({
